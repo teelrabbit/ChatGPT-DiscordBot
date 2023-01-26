@@ -29,3 +29,7 @@ client.on('messageCreate', async function(message)){
     console.log(err)
   }
 });
+
+//Log the bot onto discord
+client.login(process.env.DISCORD_TOKEN)
+console.log("ChatGDP Bot is online on Discord")
