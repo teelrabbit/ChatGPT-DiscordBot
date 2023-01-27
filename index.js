@@ -3,7 +3,7 @@ require('dotenv').config();
 
 //Prepare to connect to the Discord API
 
-const { Client, GatewayIntentBits } require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: [
   GatewayIntentBits.Guilds,
   GatewayIntentBits.GuildMessages,
@@ -21,11 +21,24 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 //Check for when a message on discord is sent
-client.on('messageCreate', async function(message)){
-  try (
-    console.log(message.content);
-    message.reply('You said: ${message.content}');
-  ) catch(err){
+client.on('messageCreate', async function(message){
+  try {
+    if(message.author.bot) return;
+
+    const gdpResponse = await openai.createCompletion({
+      model: "davinci",
+      prompt: `ChatGDP is a friendly chatbot.\n\
+      HAL: Hello, how are you? \n\
+      ${message.author.username}: ${message.content}\n\
+      HAL:`,
+      tempature: 0.9,
+      max_tokens: 100,
+      stop: ["HAL:", "F.Bueller:"],
+    })
+
+    message.reply(`${gdpResponse.data.choices[0].text}`);
+    return;
+  } catch(err){
     console.log(err)
   }
 });
