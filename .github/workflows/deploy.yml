@@ -1,2 +1,6 @@
 - name: Deploy
   run: bash deploy.sh
+
+To ensure that the bot process is running after reboot or shutdown, you can set up a 
+script that runs on startup and starts the bot process. You can also use auto-scaling 
+groups to ensure that the bot is running on multiple instances.
