@@ -23,16 +23,18 @@ const openai = new OpenAIApi(configuration);
 //Check for when a message on discord is sent
 client.on('messageCreate', async function(message){
   try {
-    if(message.author.bot) return;
+    console.log(message.content);
+    if(message.author.bot) return; // generate a response of exactly what i said in chat
+    //message.reply(`Greeting Bueller: ${message.content}`)
 
     const gdpResponse = await openai.createCompletion({
-      model: "davinci",
-      prompt: `ChatGDP is a friendly chatbot.\n\
-      HAL: Hello, how are you? \n\
+      model: "text-davinci-002",
+      prompt: `ChatGDP is a coding helper.\n\
+      HAL: Hello, I am ChatGDP. I am here to help you with your coding problems. What is the problem you are facing today? \n\
       ${message.author.username}: ${message.content}\n\
       HAL:`,
-      tempature: 0.9,
-      max_tokens: 100,
+      temperature: 0.1,
+      max_tokens: 2000,
       stop: ["HAL:", "F.Bueller:"],
     })
 
