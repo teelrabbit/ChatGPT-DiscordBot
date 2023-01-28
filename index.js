@@ -33,8 +33,8 @@ client.on('messageCreate', async function(message){
       HAL: Hello, I am ChatGDP. I am here to help you with your coding problems. What is the problem you are facing today? \n\
       ${message.author.username}: ${message.content}\n\
       HAL:`,
-      temperature: 0.1,
-      max_tokens: 2000,
+      temperature: 0.5,
+      max_tokens: 3000,
       stop: ["HAL:", "F.Bueller:"],
     })
 
