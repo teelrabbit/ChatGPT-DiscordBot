@@ -1,6 +1,39 @@
-- name: Deploy
-  run: bash deploy.sh
+name: Deploy to ECS
 
-#To ensure that the bot process is running after reboot or shutdown, you can set up a 
-#script that runs on startup and starts the bot process. You can also use auto-scaling 
-#groups to ensure that the bot is running on multiple instances.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Deploy task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        service: my-bot-service
+        cluster: my-bot-cluster
+
+    - name: Deploy service
+      uses: aws-actions/amazon-ecs-deploy-service@v1
+      with:
+        service: my-bot-service
+        cluster: my-bot-cluster
+
+    - name: Start task
+      uses: aws-actions/amazon-ecs-start-task@v1
+      with:
+        task-definition: task-definition.json
+        cluster: my-bot-cluster
