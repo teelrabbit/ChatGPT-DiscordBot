@@ -1,4 +1,4 @@
-name: Deploy to ECS
+name: Deploy to EC2
 
 on:
   push:
@@ -11,29 +11,21 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+      
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
-
-    - name: Deploy task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: task-definition.json
-        service: my-bot-service
-        cluster: my-bot-cluster
-
-    - name: Deploy service
-      uses: aws-actions/amazon-ecs-deploy-service@v1
-      with:
-        service: my-bot-service
-        cluster: my-bot-cluster
-
-    - name: Start task
-      uses: aws-actions/amazon-ecs-start-task@v1
-      with:
-        task-definition: task-definition.json
-        cluster: my-bot-cluster
+        
+    - name: Copy code to EC2 instance
+      run: |
+        aws s3 cp s3://your-bucket/your-zip-file .
+        unzip your-zip-file.zip
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Start the bot
+      run: npm start
