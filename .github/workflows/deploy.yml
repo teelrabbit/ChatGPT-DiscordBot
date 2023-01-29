@@ -21,7 +21,7 @@ jobs:
         
     - name: Copy code to EC2 instance
       run: |
-        aws s3 cp s3://your-bucket/your-zip-file .
+        aws s3 cp s3://chatgdp-discordbot/ChatGDP-DiscordBot.zip .
         unzip your-zip-file.zip
         
     - name: Install dependencies
