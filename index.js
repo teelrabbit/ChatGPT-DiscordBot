@@ -1,3 +1,24 @@
+// using enviorment variables in aws 
+const AWS = require('aws-sdk');
+
+// Create a new SSM client
+const ssm = new AWS.SSM();
+
+async function getParameter(parameterName) {
+    try {
+        const result = await ssm.getParameter({
+            Name: parameterName,
+            WithDecryption: true
+        }).promise();
+        return result.Parameter.Value;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const DISCORD_TOKEN = getParameter('DISCORD_TOKEN');
+console.log(`Discord Token: ${discordToken}`);
+
 //Create a discord bot using OpenAI that interacts on the Discord server
 require('dotenv').config();
 
