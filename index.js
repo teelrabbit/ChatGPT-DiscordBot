@@ -16,8 +16,7 @@ async function getParameter(parameterName) {
     }
 }
 
-const DISCORD_TOKEN = getParameter('DISCORD_TOKEN');
-console.log(`Discord Token: ${discordToken}`);
+const discordToken = getParameter('DISCORD_TOKEN');
 
 //Create a discord bot using OpenAI that interacts on the Discord server
 require('dotenv').config();
@@ -67,5 +66,5 @@ client.on('messageCreate', async function(message){
 });
 
 //Log the bot onto discord
-client.login(process.env.DISCORD_TOKEN)
+client.login(process.env.discordToken)
 console.log("ChatGDP Bot is online on Discord")
