@@ -48,7 +48,7 @@ jobs:
       run: |
         aws elasticbeanstalk update-environment \
         --environment-name Chatgdpdiscordbot-env-1 \
-        --version-label "$(date +%Y%m%d%H%M%S)"
+        --version-label "$(date +%s)"
         
     - name: Start Bot
       run: |
