@@ -29,7 +29,7 @@ jobs:
         zip -r ChatGDP-DiscordBot.zip .
         
     - name: Upload code to S3
-      uses: ChatGDP-DiscordBot/s3-upload-action@master
+      uses: shallwefootball/s3-upload-action@master
       with:
         args: cp ChatGDP-DiscordBot.zip s3://my-discord-bot-bucket/ChatGDP-DiscordBot.zip
 
