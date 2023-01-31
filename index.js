@@ -4,7 +4,7 @@ const OPENAI_KEY = process.env.api_key;
 const OPENAI_ORG = process.env.org_key;
 const DISCORD_TOKEN = process.env.discord_key;
 //check for env vars
-if (!token) {
+if (!OPENAI_KEY) {
   console.error("Discord token not set.");
   process.exit(1);
 }
