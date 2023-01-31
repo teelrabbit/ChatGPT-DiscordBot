@@ -6,6 +6,9 @@ const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 
 //Create a discord bot using OpenAI that interacts on the Discord server
 console.log(DISCORD_TOKEN)
+console.log(OPENAI_KEY);
+console.log(OPENAI_ORG);
+console.log(DISCORD_TOKEN);
 require('dotenv').config();
 //Prepare to connect to the Discord API
 const { Client, GatewayIntentBits } = require('discord.js');
