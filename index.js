@@ -1,8 +1,8 @@
 // referncing enviorment varibles
 require('dotenv').config();
-const OPENAI_KEY = process.env.api_key;
-const OPENAI_ORG = process.env.org_key;
-const DISCORD_TOKEN = process.env.discord_key;
+var OPENAI_KEY = process.env.api_key;
+var OPENAI_ORG = process.env.org_key;
+var DISCORD_TOKEN = process.env.discord_key;
 //check for env vars
 if (!OPENAI_KEY) {
   console.error("Discord token not set.");
