@@ -1,7 +1,6 @@
-on:
- push:
-  branches:
-    - main
+on: push
+branches:
+  - main
 
 env:
   AWS_REGION: us-west-1
@@ -27,7 +26,7 @@ jobs:
     - name: Package code into .zip file
       run: |
         zip -r ChatGDP-DiscordBot.zip .
-
+        
     - name: Upload code to S3
       uses: shallwefootball/s3-upload-action@master
       with:
@@ -38,30 +37,27 @@ jobs:
         source_dir: .
         destination_dir: .
 
-    - name: Get Current Version
-      id: current-version
+    - name: Determine version label
       run: |
-        current_version=$(aws elasticbeanstalk describe-application-versions --application-name ChatGDP-DiscordBot | jq -r '.ApplicationVersions[0].VersionLabel')
-        echo "Current Version: $current_version"
-
-    - name: Increment Version
-      run: |
-        current_version=$(echo "${{ steps.current-version.outputs.stdout }}" | awk -F '.' '{print $1 "." $2 "." $3+1}')
-        echo "Incremented Version: $current_version"
-        echo "::set-env name=VERSION_LABEL::$current_version"
+        current_version=$(aws elasticbeanstalk describe-application-versions --application-name ChatGDP-DiscordBot --version-labels v1.0.0 | jq -r '.ApplicationVersions[0].VersionLabel')
+        version_split=(${current_version//./ })
+        major=${version_split[0]}
+        minor=${version_split[1]}
+        patch=${version_split[2]}
+        next_version="${major}.${minor}.$((patch + 1))"
 
     - name: Create application version
       run: |
         aws elasticbeanstalk create-application-version \
         --application-name ChatGDP-DiscordBot \
-        --version-label ${{ env.VERSION_LABEL }} \
+        --version-label "$next_version" \
         --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
 
     - name: Deploy application version
       run: |
         aws elasticbeanstalk update-environment \
         --environment-name Chatgdpdiscordbot-env-1 \
-        --version-label ${{ env.VERSION_LABEL }}
+        --version-label "$next_version"
 
     - name: Start Bot
       run: |
