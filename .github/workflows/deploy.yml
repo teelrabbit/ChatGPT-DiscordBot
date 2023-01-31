@@ -52,6 +52,5 @@ jobs:
         --version-label v1.0.0
     - name: Start Discord bot
       run: |
-        cd DiscordBot
         node index.js
 
