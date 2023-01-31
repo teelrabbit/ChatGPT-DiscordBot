@@ -3,12 +3,13 @@ require('dotenv').config();
 const OPENAI_KEY = process.env.api_key;
 const OPENAI_ORG = process.env.org_key;
 const DISCORD_TOKEN = process.env.discord_key;
-
+//check for env vars
+if (!token) {
+  console.error("Discord token not set.");
+  process.exit(1);
+}
+console.log(`Discord token: ${token}`);
 //Create a discord bot using OpenAI that interacts on the Discord server
-console.log(DISCORD_TOKEN)
-console.log(OPENAI_KEY);
-console.log(OPENAI_ORG);
-console.log(DISCORD_TOKEN);
 require('dotenv').config();
 //Prepare to connect to the Discord API
 const { Client, GatewayIntentBits } = require('discord.js');
