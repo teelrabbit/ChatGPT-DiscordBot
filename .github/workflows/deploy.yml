@@ -31,11 +31,12 @@ jobs:
     - name: Upload code to S3
       uses: shallwefootball/s3-upload-action@master
       with:
+        args: --no-progress
         aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_bucket: my-discord-bot-bucket
         source_dir: ChatGDP-DiscordBot.zip
         destination_dir: ChatGDP-DiscordBot.zip
-        args: cp ChatGDP-DiscordBot.zip s3://my-discord-bot-bucket/ChatGDP-DiscordBot.zip
 
     - name: Create application version
       run: |
