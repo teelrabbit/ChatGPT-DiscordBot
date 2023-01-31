@@ -39,16 +39,16 @@ jobs:
         
     - name: Create application version
       run: |
-        aws elasticbeanstalk create-application-version \
-        --application-name ChatGDP-DiscordBot \
-        --version-label "$(date +%s)" \
-        --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
-
+       aws elasticbeanstalk create-application-version \
+       --application-name ChatGDP-DiscordBot \
+       --version-label "$(git rev-parse HEAD)" \
+       --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
     - name: Deploy application version
       run: |
-        aws elasticbeanstalk update-environment \
-        --environment-name Chatgdpdiscordbot-env-1 \
-        --version-label "$(date +%s)"
+       aws elasticbeanstalk update-environment \
+       --environment-name Chatgdpdiscordbot-env-1 \
+       --version-label "$(git rev-parse HEAD)"
+
         
     - name: Start Bot
       run: |
