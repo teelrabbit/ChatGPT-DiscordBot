@@ -48,7 +48,7 @@ jobs:
       run: |
         aws elasticbeanstalk update-environment \
         --environment-name Chatgdpdiscordbot-env-1 \
-        --version-label $(echo ${{ steps.git_hash.outputs.hash }} | cut -c1-7)
+        --version-label "$(date +%Y%m%d%H%M%S)"
         
     - name: Start Bot
       run: |
