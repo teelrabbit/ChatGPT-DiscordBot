@@ -49,6 +49,7 @@ jobs:
         echo "::set-env name=VERSION_LABEL::$current_version"
     - name: Create application version
       env:
+       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
        VERSION_LABEL: ${{ env.VERSION_LABEL }}
       run: |
         aws elasticbeanstalk create-application-version \
