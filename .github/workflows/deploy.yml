@@ -1,13 +1,17 @@
-name: Deploy to EC2
+name: Deploy to AWS Elastic Beanstalk
 
 on:
   push:
     branches:
       - main
 
+env:
+  AWS_REGION: us-west-1
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -17,16 +21,11 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        aws-region: ${{ env.AWS_REGION }}
 
-    - name: Download the zip file from S3
-      run: aws s3 cp s3://chatgdp-discordbot/ChatGDP-DiscordBot.zip .
-
-    - name: Unzip the file
-      run: unzip ChatGDP-DiscordBot.zip
-
-    - name: Install dependencies
-      run: npm install -S aws-sdk
-
-    - name: Start the bot
-      run: npm start
+    - name: Deploy to AWS Elastic Beanstalk
+      uses: aws-actions/eb-deploy@v1
+      with:
+        application-name: ChatGDP-DiscordBot
+        environment-name: Chatgdpdiscordbot-env-1
+        source: .
