@@ -48,5 +48,5 @@ jobs:
     - name: Deploy application version
       run: |
         aws elasticbeanstalk update-environment \
-        --environment-name ChatGDP-DiscordBot-env \
+        --environment-name ChatGDP-DiscordBot-env-1 \
         --version-label v1.0.0
