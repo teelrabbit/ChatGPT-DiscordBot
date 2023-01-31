@@ -50,3 +50,8 @@ jobs:
         aws elasticbeanstalk update-environment \
         --environment-name Chatgdpdiscordbot-env-1 \
         --version-label v1.0.0
+    - name: Start Discord bot
+      run: |
+        cd DiscordBot
+        node index.js
+
