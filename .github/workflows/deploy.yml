@@ -29,7 +29,7 @@ jobs:
         access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         region: ${{ env.AWS_REGION }}
-        application_name: my-discord-bot
-        environment_name: my-discord-bot-env
+        application_name: ChatGDP-DiscordBot
+        environment_name: Chatgdpdiscordbot-env-1
         zip_file: my-discord-bot.zip
 
