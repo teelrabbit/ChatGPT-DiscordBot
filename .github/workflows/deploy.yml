@@ -37,7 +37,8 @@ jobs:
         source_dir: .
         destination_dir: .
         
-    - name: aws elasticbeanstalk create-application-version \
+    - name: aws elasticbeanstalk create-application-version 
+      run: |
        --application-name ChatGDP-DiscordBot \
        --version-label "$(date +%s)" \
        --source-bundle S3Bucket=elasticbeanstalk-us-west-1-***,S3Key=ChatGDP-DiscordBot.zip
