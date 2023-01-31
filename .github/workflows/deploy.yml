@@ -1,5 +1,3 @@
-name: Deploy
-
 on:
   push:
     branches:
@@ -43,16 +41,12 @@ jobs:
 
     - name: Create application version
       run: |
-        VERSION_LABEL="v$(date +%s)"
         aws elasticbeanstalk create-application-version \
         --application-name ChatGDP-DiscordBot \
-        --version-label ${VERSION_LABEL} \
+        --version-label v1.0.0 \
         --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
     - name: Deploy application version
       run: |
         aws elasticbeanstalk update-environment \
         --environment-name Chatgdpdiscordbot-env-1 \
-        --version-label ${VERSION_LABEL}
-    - name: Start Discord bot
-      run: |
-        node index.js
+        --version-label v1.0.0
