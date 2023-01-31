@@ -24,8 +24,12 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
 
     - name: Deploy to AWS Elastic Beanstalk
-      uses: aws-actions/eb-deploy@v1
+      uses: aws-actions/aws-elasticbeanstalk-deploy-action@v1
       with:
-        application-name: ChatGDP-DiscordBot
-        environment-name: Chatgdpdiscordbot-env-1
-        source: .
+        access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        region: ${{ env.AWS_REGION }}
+        application_name: my-discord-bot
+        environment_name: my-discord-bot-env
+        zip_file: my-discord-bot.zip
+
