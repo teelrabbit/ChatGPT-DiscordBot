@@ -9,8 +9,9 @@ var DISCORD_TOKEN = process.env.discord_key;
 console.log(process.env.DISCORD_TOKEN);
 if (!DISCORD_TOKEN) {
   console.error("Discord token not set.");
-  console.log(DISCORD_TOKEN)
-  process.exit(1);
+  console.log(DISCORD_TOKEN);
+  console.log(OPENAI_ORG);
+  process.exit(0);
 }
 //Create a discord bot using OpenAI that interacts on the Discord server
 require('dotenv').config();
