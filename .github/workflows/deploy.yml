@@ -52,3 +52,4 @@ jobs:
     - name: Start Bot
       run: |
         echo $DISCORD_TOKEN
+        echo test
