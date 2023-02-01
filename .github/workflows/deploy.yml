@@ -12,6 +12,7 @@ env:
 jobs:
   Build_and_Package:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
     - name: Checkout code
@@ -52,7 +53,7 @@ jobs:
        aws elasticbeanstalk update-environment \
        --environment-name Chatgdpdiscordbot-env-1 \
        --version-label "$(git rev-parse HEAD)"
-        
+
   Start_Bot:
     runs-on: ubuntu-latest
     continue-on-error: true
