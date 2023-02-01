@@ -5,7 +5,7 @@ on:
 
 env:
   AWS_REGION: us-west-1
-  DISCORD_TOKEN: ${DISCORD_TOKEN}
+  DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
 
 jobs:
   deploy:
