@@ -49,7 +49,7 @@ jobs:
       run: |
        aws elasticbeanstalk create-application-version \
        --application-name ChatGDP-DiscordBot \
-       --version-label "$(git rev-parse HEAD)" \
+       --version-label "$(date +%Y%m%d%H%M%S)" \
        --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
     - name: Deploy application version
       run: |
