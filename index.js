@@ -1,5 +1,6 @@
 // referncing enviorment varibles
 require('dotenv').config();
+/*
 var OPENAI_KEY = process.env.api_key;
 var OPENAI_ORG = process.env.org_key;
 var DISCORD_TOKEN = process.env.discord_key;
@@ -9,6 +10,7 @@ if (!OPENAI_KEY) {
   console.log(DISCORD_TOKEN)
   process.exit(1);
 }
+*/
 console.log(`Discord token: ${token}`);
 //Create a discord bot using OpenAI that interacts on the Discord server
 require('dotenv').config();
