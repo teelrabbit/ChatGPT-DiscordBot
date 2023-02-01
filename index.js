@@ -6,7 +6,7 @@ var OPENAI_ORG = process.env.org_key;
 var DISCORD_TOKEN = process.env.discord_key;
 */
 //check for env vars
-if (!OPENAI_KEY) {
+if (!DISCORD_TOKEN) {
   console.error("Discord token not set.");
   console.log(DISCORD_TOKEN)
   process.exit(1);
