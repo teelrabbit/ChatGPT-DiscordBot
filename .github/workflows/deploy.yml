@@ -60,7 +60,9 @@ jobs:
     needs: Build_and_Package
     steps:
     - name: Install dependencies
-      run: npm install discord.js openai dotenv aws-sdk
+      run: |
+        npm install discord.js openai dotenv aws-sdk
+        yarn install
       
     - name: Start Bot
       run: |
