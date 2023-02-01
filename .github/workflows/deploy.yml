@@ -26,11 +26,6 @@ jobs:
     - name: Package code into .zip file
       run: |
         zip -r ChatGDP-DiscordBot.zip .
-        
-  Upload_and_Deploy:
-    runs-on: ubuntu-latest
-
-    steps:
     - name: Upload code to S3
       uses: shallwefootball/s3-upload-action@master
       with:
