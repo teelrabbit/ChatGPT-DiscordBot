@@ -55,6 +55,7 @@ jobs:
         
   Start_Bot:
     runs-on: ubuntu-latest
+    continue-on-error: true
     needs: Build_and_Package
     steps:
     - name: Start Bot
