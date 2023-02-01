@@ -59,3 +59,4 @@ jobs:
     needs: Build_and_Package
     steps:
     - name: Set DISCORD_TOKEN environment variable
+      run: echo "DISCORD_TOKEN=${{ env.DISCORD_TOKEN }}" >> $GITHUB_ENV
