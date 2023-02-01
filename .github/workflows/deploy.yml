@@ -1,18 +1,14 @@
-name: Deployment
-
 on:
-  push:
-    branches:
-      - main
+ push:
+  branches:
+    - main
 
 env:
   AWS_REGION: us-west-1
-  DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
 
 jobs:
-  Build_and_Package:
+  deploy:
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
     - name: Checkout code
@@ -31,7 +27,6 @@ jobs:
     - name: Package code into .zip file
       run: |
         zip -r ChatGDP-DiscordBot.zip .
-        
     - name: Upload code to S3
       uses: shallwefootball/s3-upload-action@master
       with:
@@ -53,12 +48,8 @@ jobs:
        aws elasticbeanstalk update-environment \
        --environment-name Chatgdpdiscordbot-env-1 \
        --version-label "$(git rev-parse HEAD)"
-  Start_Bot:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    needs: Build_and_Package
-    steps:
+        
     - name: Start Bot
       run: |
-        echo "DISCORD_TOKEN=${{ env.DISCORD_TOKEN }}" >> $GITHUB_ENV
         node index.js
+        echo $DISCORD_TOKEN
