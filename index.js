@@ -11,7 +11,7 @@ if (!OPENAI_KEY) {
   process.exit(1);
 }
 */
-console.log(`Discord token: ${OPENAI_ORG}`);
+console.log(OPENAI_ORG);
 //Create a discord bot using OpenAI that interacts on the Discord server
 require('dotenv').config();
 //Prepare to connect to the Discord API
