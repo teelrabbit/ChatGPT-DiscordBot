@@ -1,5 +1,4 @@
 // referncing enviorment varibles
-require('dotenv').config();
 
 //check for env vars
 console.log(process.env.DISCORD_TOKEN);
@@ -11,7 +10,6 @@ process.exit(0);
 }
 //gdp suggestion
 //Create a discord bot using OpenAI that interacts on the Discord server
-require('dotenv').config();
 //Prepare to connect to the Discord API
 const { Client, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: [
