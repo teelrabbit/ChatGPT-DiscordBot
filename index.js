@@ -11,7 +11,6 @@ if (!DISCORD_TOKEN) {
   console.log(DISCORD_TOKEN)
   process.exit(1);
 }
-*/
 //Create a discord bot using OpenAI that interacts on the Discord server
 require('dotenv').config();
 //Prepare to connect to the Discord API
