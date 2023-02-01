@@ -51,5 +51,4 @@ jobs:
         
     - name: Start Bot
       run: |
-        node index.js
         echo $DISCORD_TOKEN
