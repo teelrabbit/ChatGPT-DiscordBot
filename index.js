@@ -1,11 +1,11 @@
 // referncing enviorment varibles
 
 //check for env vars
-console.log(process.env.DISCORD_TOKEN);
-if (!process.env.DISCORD_TOKEN) {
+console.log(process.env.discord_key);
+if (!process.env.discord_key) {
 console.error("Discord token not set.");
-console.log(process.env.DISCORD_TOKEN);
-console.log(process.env.OPENAI_ORG);
+console.log(process.env.discord_key);
+console.log(process.env.org_key);
 process.exit(0);
 }
 //gdp suggestion
@@ -20,8 +20,8 @@ const client = new Client({ intents: [
 //Prepare connection to OpenAI API
 const { Configuration , OpenAIApi } = require ('openai');
 const configuration = new Configuration({
-  organization: process.env.OPENAI_ORG,
-  apiKey: process.env.OPENAI_KEY,
+  organization: process.env.org_key,
+  apiKey: process.env.api_key,
 });
 const openai = new OpenAIApi(configuration);
 //Check for when a message on discord is sent
@@ -48,5 +48,5 @@ client.on('messageCreate', async function(message){
   }
 });
 //Log the bot onto discord
-client.login(process.env.DISCORD_TOKEN)
+client.login(process.env.discord_key)
 console.log("ChatGDP Bot is online on Discord")
