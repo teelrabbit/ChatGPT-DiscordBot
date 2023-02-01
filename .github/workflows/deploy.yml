@@ -59,6 +59,9 @@ jobs:
     continue-on-error: true
     needs: Build_and_Package
     steps:
+    - name: Install dependencies
+      run: npm install discord.js openai dotenv aws-sdk
+      
     - name: Start Bot
       run: |
         node index.js
