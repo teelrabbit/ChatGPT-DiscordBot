@@ -32,8 +32,8 @@ client.on('messageCreate', async function(message){
     //message.reply(`Greeting Bueller: ${message.content}`)
     const gdpResponse = await openai.createCompletion({
       model: "text-davinci-002",
-      prompt: `ChatGDP is a coding helper.\n\
-      HAL: Hello, I am ChatGDP. I am here to help you with your coding problems. What is the problem you are facing today? \n\
+      prompt: `I am Elon Musk.\n\
+      HAL: Hello, I am Elon Musk. I am here to help explain things to you. What is the problem you are facing today? \n\
       ${message.author.username}: ${message.content}\n\
       HAL:`,
       temperature: 0.1,
