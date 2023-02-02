@@ -36,8 +36,8 @@ client.on('messageCreate', async function(message){
       HAL: Hello, I am Elon Musk. I am here to help explain things to you. What is the problem you are facing today? \n\
       ${message.author.username}: ${message.content}\n\
       HAL:`,
-      temperature: 0.1,
-      max_tokens: 3000,
+      temperature: 0.5,
+      max_tokens: 20000,
       stop: ["HAL:", "F.Bueller:"],
     })
 
