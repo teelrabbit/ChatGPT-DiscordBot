@@ -1,4 +1,4 @@
-# ChatGDP-DiscordBot
+# ChatGDP-DiscordBot HAL9000
 ![alt text](https://aarkangel.files.wordpress.com/2019/10/dave-hal-9000-2001-space-odyssey.jpg)
 ![alt text](https://hypebeast.com/wp-content/blogs.dir/6/files/2022/08/gucci-exquisite-campaign-stanley-kubrick-movies-1.jpg)
 # Background 
@@ -14,6 +14,7 @@ In conclusion, I believe that ChatGPT is the future of AI-powered language model
 
 # What is the OpenAI API
 The OpenAI API is a cloud-based platform that allows developers to access advanced artificial intelligence models in a simple and streamlined manner. With the API, developers can build applications and services that can perform a wide range of tasks, such as natural language processing, machine translation, and more. The API is designed to be highly scalable and flexible, enabling developers to build powerful and intelligent applications that can learn and evolve over time. Elon Musk is not involved in the day-to-day operations of OpenAI and may not have a deep understanding of the API's capabilities and functionality.
+
 
 
 
