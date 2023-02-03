@@ -23,22 +23,25 @@ const configuration = new Configuration({
   organization: process.env.org_key,
   apiKey: process.env.api_key,
 });
-const openai = new OpenAIApi(configuration);
-//Check for when a message on discord is sent
+
+// Keep track of previous interactions
+let previousInteractions = [];
+
 client.on('messageCreate', async function(message){
   try {
-    console.log(message.content);
-    if(message.author.bot) return; // generate a response of exactly what i said in chat
-    //message.reply(`Greeting Bueller: ${message.content}`)
+    if(message.author.bot) return;
+    const currentInteraction = `${message.author.username}: ${message.content}`;
+    previousInteractions.push(currentInteraction);
+    const prompt = `I am Elon Musk. I am here to answer your code questions. What would you like to know? \n\
+${previousInteractions.join("\n")}\n\
+HAL:`;
     const gdpResponse = await openai.createCompletion({
       model: "text-davinci-002",
-      prompt: `I am Elon Musk. I am here to answer your code questions. What would you like to know? \n\
-      ${message.author.username}: ${message.content}\n\
-      HAL:`,
+      prompt: prompt,
       temperature: 0.1,
       max_tokens: 3000,
       stop: ["HAL:", "F.Bueller:"],
-    })
+    });
 
     message.reply(`${gdpResponse.data.choices[0].text}`);
     return;
