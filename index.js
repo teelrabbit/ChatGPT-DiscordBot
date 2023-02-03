@@ -1,12 +1,11 @@
 // referncing enviorment varibles
 
 //check for env vars
-
-//console.log(process.env.discord_key);
+console.log(process.env.discord_key);
 if (!process.env.discord_key) {
-console.error("Discord token is set");
-//console.log(process.env.discord_key);
-//console.log(process.env.org_key);
+console.error("Discord token not set.");
+console.log(process.env.discord_key);
+console.log(process.env.org_key);
 process.exit(0);
 }
 //gdp suggestion
