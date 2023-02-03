@@ -1,14 +1,3 @@
-// referncing enviorment varibles
-
-//check for env vars
-console.log(process.env.discord_key);
-if (!process.env.discord_key) {
-console.error("Discord token not set.");
-console.log(process.env.discord_key);
-console.log(process.env.org_key);
-process.exit(0);
-}
-//gdp suggestion
 //Create a discord bot using OpenAI that interacts on the Discord server
 //Prepare to connect to the Discord API
 const { Client, GatewayIntentBits } = require('discord.js');
