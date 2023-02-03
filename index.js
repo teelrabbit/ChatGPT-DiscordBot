@@ -48,4 +48,12 @@ client.on('messageCreate', async function(message){
 });
 //Log the bot onto discord
 client.login(process.env.discord_key)
-console.log("ChatGDP Bot is online on Discord")
+.then(() => {
+    console.log("ChatGDP Bot is online on Discord")
+})
+.catch((error) => {
+    console.error("Failed to log in to Discord:", error)
+})
+
+
+
