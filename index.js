@@ -1,9 +1,9 @@
 // referncing enviorment varibles
 
 //check for env vars
-console.log(process.env.discord_key);
+//console.log(process.env.discord_key);
 if (!process.env.discord_key) {
-console.error("Discord token not set.");
+console.error("Bot running, but discord token can not be read");
 //console.log(process.env.discord_key);
 //console.log(process.env.org_key);
 process.exit(0);
