@@ -52,5 +52,16 @@ jobs:
         
     - name: Start Bot
       run: |
-        node index.js
-        echo test
+        node index.js &
+        pid=$!
+        echo "Bot PID: $pid"
+        
+    - name: Check Bot Status
+      run: |
+        curl localhost:3000
+        if [ $? -eq 0 ]; then
+          echo "Bot is running"
+        else
+          echo "Bot is not running"
+          exit 1
+        fi
