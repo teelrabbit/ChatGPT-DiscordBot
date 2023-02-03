@@ -1,6 +1,7 @@
 // referncing enviorment varibles
 
 //check for env vars
+
 //console.log(process.env.discord_key);
 if (process.env.discord_key) {
 console.error("Discord token is set");
