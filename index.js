@@ -84,10 +84,10 @@ async function checkMessageInDynamoDB(message) {
     const result = await documentClient.get(params).promise();
     if (result.Item) {
       return result.Item.response;
-}
-return null;
-} catch (err) {
-console.error(err);
-return null;
-}
+  }
+  return null;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
 }
