@@ -33,7 +33,7 @@ client.on('messageCreate', async function(message){
       ${message.author.username}: ${message.content}\n\
       HAL:`,
       temperature: 0.1,
-      max_tokens: 3000,
+      max_tokens: 4000,
       stop: ["HAL:", "F.Bueller:"],
     })
 
