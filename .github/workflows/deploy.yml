@@ -4,30 +4,18 @@ on:
   push:
     branches:
       - main
-env:
-  AWS_REGION: us-west-1
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install AWS CLI
-      uses: unfor19/install-aws-cli-action@v1
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+    # ... (checkout, install AWS CLI, configure AWS credentials, etc)
 
     - name: Package code into .zip file
       run: |
         zip -r ChatGDP-DiscordBot.zip .
+
     - name: Upload code to S3
       uses: shallwefootball/s3-upload-action@master
       with:
@@ -37,19 +25,32 @@ jobs:
         aws_bucket: elasticbeanstalk-us-west-1-431738351778
         source_dir: .
         destination_dir: .
-        
+
     - name: Create application version
       run: |
-       aws elasticbeanstalk create-application-version \
-       --application-name ChatGDP-DiscordBot \
-       --version-label "$(git rev-parse HEAD)" \
-       --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
-    - name: Deploy application version
+        aws elasticbeanstalk create-application-version \
+          --application-name ChatGDP-DiscordBot \
+          --version-label "$(git rev-parse HEAD)" \
+          --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
+
+    - name: Check if this is a pull request
+      if: github.event_name == 'pull_request'
+      run: echo "Deploying to test environment"
+
+    - name: Deploy application version (test)
+      if: github.event_name == 'pull_request'
       run: |
-       aws elasticbeanstalk update-environment \
-       --environment-name Chatgdpdiscordbot-env-1 \
-       --version-label "$(git rev-parse HEAD)"
-        
+        aws elasticbeanstalk update-environment \
+          --environment-name Chatgdpdiscordbot-test-env \
+          --version-label "$(git rev-parse HEAD)"
+
+    - name: Deploy application version (prod)
+      if: github.event_name == 'push'
+      run: |
+        aws elasticbeanstalk update-environment \
+          --environment-name Chatgdpdiscordbot-env-1 \
+          --version-label "$(git rev-parse HEAD)"
+
     - name: Start Bot
       run: |
         node index.js
