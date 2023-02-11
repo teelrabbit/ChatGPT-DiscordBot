@@ -21,6 +21,13 @@ const configuration = new Configuration({
   apiKey: process.env.api_key,
 });
 const openai = new OpenAIApi(configuration);
+// Preparing connection to dynamo db
+const dynamo = new AWS.DynamoDB({
+  accessKeyId: process.env.aws_access_key_id,
+  secretAccessKey: process.env.aws_secret_access_key,
+  region: "us-west-2"
+});
+//add other code later for storing feature 
 //Check for when a message on discord is sent
 client.on('messageCreate', async function(message){
   try {
