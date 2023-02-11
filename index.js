@@ -25,7 +25,7 @@ const openai = new OpenAIApi(configuration);
 const dynamo = new AWS.DynamoDB({
   accessKeyId: process.env.aws_access_key_id,
   secretAccessKey: process.env.aws_secret_access_key,
-  region: "us-west-2"
+  region: "us-west-1"
 });
 //add other code later for storing feature 
 //Check for when a message on discord is sent
