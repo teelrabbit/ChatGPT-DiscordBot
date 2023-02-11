@@ -27,6 +27,7 @@ const dynamo = new AWS.DynamoDB({
   secretAccessKey: process.env.aws_secret_access_key,
   region: "us-west-1"
 });
+console.log("test");
 //add other code later for storing feature 
 //Check for when a message on discord is sent
 client.on('messageCreate', async function(message){
