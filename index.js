@@ -22,14 +22,19 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 // Preparing connection to dynamo db
-/*
-const dynamo = new AWS.DynamoDB({
-  accessKeyId: process.env.aws_access_key_id,
-  secretAccessKey: process.env.aws_secret_access_key,
-  region: "us-west-1"
-});
-console.log("test");
-*/
+
+try {
+  const dynamo = new AWS.DynamoDB({
+    accessKeyId: process.env.aws_access_key_id,
+    secretAccessKey: process.env.aws_secret_access_key,
+    region: "us-west-1"
+  });
+  console.log("DynamoDB connection successful.");
+} catch (error) {
+  console.error("Error connecting to DynamoDB:", error);
+  process.exit(1);
+}
+
 //add other code later for storing feature 
 //Check for when a message on discord is sent
 client.on('messageCreate', async function(message){
