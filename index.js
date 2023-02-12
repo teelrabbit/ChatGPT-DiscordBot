@@ -22,6 +22,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 // Preparing connection to dynamo db
+/*
 const AWS = require('aws-sdk');
 
 let dynamo;
@@ -39,7 +40,7 @@ try {
     console.error(`Unexpected Error: ${error.message}`);
   }
 }
-
+*/
 //add other code later for storing feature 
 //Check for when a message on discord is sent
 client.on('messageCreate', async function(message){
