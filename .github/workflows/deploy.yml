@@ -53,7 +53,7 @@ jobs:
         echo "Error deploying application version: $result"
         exit 1
       fi
-        
+
     - name: Start Bot
       run: |
         node index.js
