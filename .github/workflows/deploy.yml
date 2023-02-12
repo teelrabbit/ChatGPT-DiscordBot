@@ -49,10 +49,10 @@ jobs:
         result=$(aws elasticbeanstalk update-environment \
         --environment-name Chatgdpdiscordbot-env-1 \
         --version-label "$(git rev-parse HEAD)")
-      if [ $? -ne 0 ]; then
-        echo "Error deploying application version: $result"
-        exit 1
-      fi
+        if [ $? -ne 0 ]; then
+          echo "Error deploying application version: $result"
+          exit 1
+        fi
 
     - name: Start Bot
       run: |
