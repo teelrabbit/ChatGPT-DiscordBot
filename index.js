@@ -22,6 +22,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 // Preparing connection to dynamo db
+const AWS = require('aws-sdk');
 
 let dynamo;
 try {
