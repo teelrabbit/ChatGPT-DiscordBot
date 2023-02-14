@@ -22,7 +22,7 @@ if (!process.env.discord_key) {
   });
   const openai = new OpenAIApi(configuration);
   //Create connection to SQL Database
-  //const mysql = require('mysql2');
+  const mysql = require('mysql2');
 
   //const connection = mysql.createConnection({
     //host: process.env.RDS_HOSTNAME,
