@@ -31,6 +31,25 @@ if (!process.env.discord_key) {
     database: process.env.RDS_DB_NAME,
     port: process.env.RDS_PORT
   });  
+
+// Connect to the database
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to database: ' + err.stack);
+    return;
+  }
+  console.log('Connected to database as id ' + connection.threadId);
+});
+
+// Handle errors that occur during the connection
+connection.on('error', (err) => {
+  console.error('Database error: ' + err);
+  if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+    connection.connect();
+  } else {
+    throw err;
+  }
+});
   
   //Check for when a message on discord is sent
   client.on('messageCreate', async function(message){
