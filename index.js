@@ -21,7 +21,16 @@ if (!process.env.discord_key) {
     apiKey: process.env.api_key,
   });
   const openai = new OpenAIApi(configuration);
-  //add other code later for storing feature 
+  //Create connection to SQL Database
+  const mysql = require('mysql2');
+
+  const connection = mysql.createConnection({
+    host: process.env.RDS_HOSTNAME,
+    user: process.env.RDS_USERNAME,
+    password: process.env.RDS_PASSWORD,
+    database: process.env.RDS_DB_NAME,
+    port: process.env.RDS_PORT
+  });  
   
   //Check for when a message on discord is sent
   client.on('messageCreate', async function(message){
