@@ -31,6 +31,9 @@ if (!process.env.discord_key) {
     database: process.env.RDS_DB_NAME,
     port: process.env.RDS_PORT
   });  
+  if (!connection){
+    console.log('error with connection');
+  }
   
   //Check for when a message on discord is sent
   client.on('messageCreate', async function(message){
