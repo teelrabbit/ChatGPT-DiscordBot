@@ -44,16 +44,13 @@ jobs:
        --application-name ChatGDP-DiscordBot \
        --version-label "$(git rev-parse HEAD)" \
        --source-bundle S3Bucket=elasticbeanstalk-us-west-1-431738351778,S3Key=ChatGDP-DiscordBot.zip
+    
     - name: Deploy application version
       run: |
-        result=$(aws elasticbeanstalk update-environment \
-        --environment-name Chatgdpdiscordbot-env-1 \
-        --version-label "$(git rev-parse HEAD)")
-        if [ $? -ne 0 ]; then
-          echo "Error deploying application version: $result"
-          exit 1
-        fi
-
+       aws elasticbeanstalk update-environment \
+       --environment-name Chatgdpdiscordbot-env-1 \
+       --version-label "$(git rev-parse HEAD)"
+        
     - name: Start Bot
       run: |
-        node index.js
+        node index.js 
