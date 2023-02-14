@@ -14,34 +14,8 @@ const client = new Client({ intents: [
   GatewayIntentBits.GuildMessages,
   GatewayIntentBits.MessageContent
 ]})
-//Prepare connection to OpenAI API
-const { Configuration , OpenAIApi } = require ('openai');
-const configuration = new Configuration({
-  organization: process.env.org_key,
-  apiKey: process.env.api_key,
-});
-const openai = new OpenAIApi(configuration);
-// Preparing connection to dynamo db
+//add code for some sort of database
 
-const AWS = require('aws-sdk');
-
-let dynamo;
-try {
-  dynamo = new AWS.DynamoDB({
-    accessKeyId: process.env.aws_access_key_id,
-    secretAccessKey: process.env.aws_secret_access_key,
-    region: "us-west-1"
-  });
-  console.log("DynamoDB connection successful.");
-} catch (error) {
-  if (error instanceof AWS.DynamoDB.AWSError) {
-    console.error(`AWS Error: ${error.message}`);
-  } else {
-    console.error(`Unexpected Error: ${error.message}`);
-  }
-}
-
-//add other code later for storing feature 
 //Check for when a message on discord is sent
 client.on('messageCreate', async function(message){
   try {
