@@ -33,6 +33,8 @@ if (!process.env.discord_key) {
     port: process.env.RDS_PORT
   });  
   */
+ // Creating a data structure to store responses 
+ const conversationHistory = {};
 
   //Check for when a message on discord is sent
   client.on('messageCreate', async function(message){
