@@ -42,6 +42,13 @@ if (!process.env.discord_key) {
       console.log(message.content);
       if(message.author.bot) return; // generate a response of exactly what i said in chat
       //message.reply(`Greeting Bueller: ${message.content}`)
+
+      // check for if response to prompt was saved 
+      if (message.content in conversationHistory) {
+        message.reply(conversationHistory[message.content]);
+        return;
+      }
+
       const gdpResponse = await openai.createCompletion({
         model: "text-davinci-002",
         prompt: `I am Elon Musk. I am here to answer your code questions. What would you like to know? \n\
@@ -51,7 +58,10 @@ if (!process.env.discord_key) {
         max_tokens: 4000,
         stop: ["HAL:", "F.Bueller:"],
       })
-  
+     
+      //save the prompt and response to data struct
+      conversationHistory[message.content] = gdpResponse.data.choices[0].text;
+      
       message.reply(`${gdpResponse.data.choices[0].text}`);
       return;
     } catch(err){
