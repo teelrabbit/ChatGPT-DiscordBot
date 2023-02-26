@@ -1,5 +1,4 @@
 # ChatGDP-DiscordBot HAL9000
-![alt text](https://aarkangel.files.wordpress.com/2019/10/dave-hal-9000-2001-space-odyssey.jpg)
 ![alt text](https://hypebeast.com/wp-content/blogs.dir/6/files/2022/08/gucci-exquisite-campaign-stanley-kubrick-movies-1.jpg)
 # Background 
 ChatGPT is a cutting-edge AI language model that has been trained to generate human-like text. It's capable of answering questions, generating creative writing, and even coding!
