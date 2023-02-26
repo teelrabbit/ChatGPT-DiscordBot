@@ -1,4 +1,3 @@
-// referencing environment variables
 // check for env vars
 if (!process.env.discord_key || !process.env.org_key || !process.env.api_key) {
   console.error("One or more environment variables are missing.");
@@ -22,22 +21,6 @@ const configuration = new Configuration({
   apiKey: process.env.api_key,
 });
 const openai = new OpenAIApi(configuration);
-
-// Create connection to SQL Database
-/*
-const mysql = require('mysql2');
-
-const connection = mysql.createConnection({
-  host: process.env.RDS_HOSTNAME,
-  user: process.env.RDS_USERNAME,
-  password: process.env.RDS_PASSWORD,
-  database: process.env.RDS_DB_NAME,
-  port: process.env.RDS_PORT
-});  
-*/
-
-// Create a data structure to store previous prompts and responses
-const chatHistory = {};
 
 // Check for when a message on Discord is sent
 client.on("messageCreate", async function (message) {
