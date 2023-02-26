@@ -1,9 +1,7 @@
 on:
   pull_request:
     types: [opened, synchronize]
-  push:
-    branches:
-      - main
+    
 env:
   AWS_REGION: us-west-1
 
