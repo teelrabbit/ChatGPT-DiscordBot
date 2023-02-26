@@ -62,7 +62,7 @@ client.on("messageCreate", async function (message) {
     message.reply("There was an error processing your request.");
   }
 });
-
+console.log('testenv');
 // Log the bot onto Discord
 client
   .login(process.env.discord_key)
