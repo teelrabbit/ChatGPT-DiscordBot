@@ -64,8 +64,8 @@ Last Update: Feb 25 2023
 ##### Goals
 | Status | Action                                  | Reason                                                                                              |
 | ------ | --------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| NA     | Create multiple enviorments on AWS      | This is so we there can be a testing enviorment so that harmful chnages can be observed             |
-| NA     | Create Deployment script GitHub Actions | Use github actions dpeloy script to deploy to the needed aws enviorment before being pushed to main |
+| Done  | Create multiple enviorments on AWS      | This is so we there can be a testing enviorment so that harmful chnages can be observed             |
+| Done  | Create Deployment script GitHub Actions | Use github actions dpeloy script to deploy to the needed aws enviorment before being pushed to main |
 |   NA     |        Link application to database                                 |      This will allow for fine-tuning                                                                                               |
 |        |                                         |                                                                                                     |
 
