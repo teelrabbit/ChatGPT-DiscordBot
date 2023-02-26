@@ -45,10 +45,10 @@ client.on("messageCreate", async function (message) {
       model: "text-davinci-002",
       prompt: `I am Elon Musk. I am here to answer your code questions. What would you like to know? \n\
         ${prompt}\n\
-        HAL:`,
+        H10:`,
       temperature: 0.8,
       max_tokens: 4000,
-      stop: ["HAL:", "F.Bueller:"],
+      stop: ["H10:", "F.Bueller:"],
     });
 
     const response = gdpResponse.data.choices[0].text;
