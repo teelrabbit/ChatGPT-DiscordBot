@@ -22,19 +22,21 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+// Object to store chat history
+const chatHistory = {};
+
 // Check for when a message on Discord is sent
 client.on("messageCreate", async function (message) {
   try {
     console.log(message.content);
     if (message.author.bot) return;
 
-    // Check if we have a previous response for this prompt
-    const prompt = `${message.author.username}: ${message.content}`;
-    const previousResponse = chatHistory[prompt];
+    // Get the prompt from the message content
+    const prompt = message.content;
 
-    // If we have a previous response, use it directly
-    if (previousResponse) {
-      message.reply(previousResponse);
+    // Check if there is a cached response for the prompt
+    if (chatHistory[prompt]) {
+      message.reply(chatHistory[prompt]);
       return;
     }
 
@@ -44,7 +46,7 @@ client.on("messageCreate", async function (message) {
       prompt: `I am Elon Musk. I am here to answer your code questions. What would you like to know? \n\
         ${prompt}\n\
         HAL:`,
-      temperature: 0.1,
+      temperature: 0.8,
       max_tokens: 4000,
       stop: ["HAL:", "F.Bueller:"],
     });
@@ -57,6 +59,7 @@ client.on("messageCreate", async function (message) {
     message.reply(response);
   } catch (err) {
     console.log(err);
+    message.reply("There was an error processing your request.");
   }
 });
 
