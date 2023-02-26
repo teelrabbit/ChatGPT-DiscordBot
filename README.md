@@ -70,7 +70,8 @@ Last Update: Feb 25 2023
 |        |                                         |                                                                                                     |
 
 
-![[Screen Shot 2023-02-25 at 8.48.02 PM.png]]
+![alt text](https://github.com/teelrabbit/ChatGDP-DiscordBot/blob/main/diagram.png?raw=true)
+
 
 
 
