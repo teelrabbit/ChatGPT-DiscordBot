@@ -23,13 +23,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 // Object to store chat history
-// Prepare connection to DynamoDB
-const AWS = require("aws-sdk");
-AWS.config.update({ region: "us-east-1" });
-const documentClient = new AWS.DynamoDB.DocumentClient();
-const tableName = "GPT-Response-DB";
-
-// Object to store chat history
 const chatHistory = {};
 
 // Check for when a message on Discord is sent
@@ -63,23 +56,12 @@ client.on("messageCreate", async function (message) {
     // Save the new response in the chat history
     chatHistory[prompt] = response;
 
-    // Save the response to DynamoDB
-    const params = {
-      TableName: tableName,
-      Item: {
-        prompt: prompt,
-        response: response,
-      },
-    };
-    await documentClient.put(params).promise();
-
     message.reply(response);
   } catch (err) {
     console.log(err);
     message.reply("There was an error processing your request.");
   }
 });
-
 console.log('testenv');
 // Log the bot onto Discord
 client
