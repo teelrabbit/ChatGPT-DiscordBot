@@ -22,8 +22,10 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// Object to store chat history
-const chatHistory = {};
+// Prepare connection to DynamoDB ----- changes start here
+const AWS = require("aws-sdk");
+AWS.config.update({ region: "us-east-1" }); // replace with your preferred region
+const docClient = new AWS.DynamoDB.DocumentClient();
 
 // Check for when a message on Discord is sent
 client.on("messageCreate", async function (message) {
@@ -34,9 +36,16 @@ client.on("messageCreate", async function (message) {
     // Get the prompt from the message content
     const prompt = message.content;
 
-    // Check if there is a cached response for the prompt
-    if (chatHistory[prompt]) {
-      message.reply(chatHistory[prompt]);
+    // Check if there is a cached response for the prompt in DynamoDB
+    const params = {
+      TableName: "GPT-Response-DB",
+      Key: {
+        prompt: prompt,
+      },
+    };
+    const result = await docClient.get(params).promise();
+    if (result.Item) {
+      message.reply(result.Item.response);
       return;
     }
 
@@ -53,8 +62,15 @@ client.on("messageCreate", async function (message) {
 
     const response = gdpResponse.data.choices[0].text;
 
-    // Save the new response in the chat history
-    chatHistory[prompt] = response;
+    // Save the new response in the chat history DynamoDB
+    const putParams = {
+      TableName: "GPT-Response-DB",
+      Item: {
+        prompt: prompt,
+        response: response,
+      },
+    };
+    await docClient.put(putParams).promise();
 
     message.reply(response);
   } catch (err) {
@@ -62,8 +78,9 @@ client.on("messageCreate", async function (message) {
     message.reply("There was an error processing your request.");
   }
 });
+
 console.log('testenv');
-// Log the bot onto Discord
+// Log the bot onto Discord -- changes end here
 client
   .login(process.env.discord_key)
   .then(() => {
