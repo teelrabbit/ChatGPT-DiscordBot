@@ -56,7 +56,7 @@ Last Update: Feb 25 2023
 | Status | Action                                        | Reason                                                     |     
 | ------ | --------------------------------------------- | ---------------------------------------------------------- | 
 | Done   | Create local running discord bot using GDP -3 | Prove GDP -3 can be used for a discord bot                 |     
-| TBD    | Design AWS architecture                       | Allow for bot to be online                                 |     
+| Done    | Design AWS architecture                       | Allow for bot to be online                                 |     
 | TBD    | Fine tuning                                   | Create a more  capable daily assistant for a specific user |                                                     |                                                            |     |
 
 ### Architecture 
