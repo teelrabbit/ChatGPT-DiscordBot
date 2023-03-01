@@ -41,6 +41,7 @@ docClient.listTables((err, data) => {
   if (err) {
     console.error("Failed to connect to DynamoDB:", err);
     process.exit(1);
+    return 1;
   } else {
     console.log("Connected to DynamoDB successfully");
   }
