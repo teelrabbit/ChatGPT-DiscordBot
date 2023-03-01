@@ -43,7 +43,7 @@ client.on("messageCreate", async function (message) {
     // Otherwise, generate a new response using OpenAI
     const gdpResponse = await openai.createCompletion({
       model: "text-davinci-002",
-      prompt: `I am Elon Musk. I am here to answer your code questions. I am also diesigned to find ways to improve the openai api based discord bot. What would you like to know? \n\
+      prompt: `I am Elon Musk. I am here to answer your code questions. What would you like to know? \n\
         ${prompt}\n\
         H10:`,
       temperature: 0.8,
