@@ -22,6 +22,23 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+//changes here ---------------------------------------------------------------
+// Load the AWS SDK for JavaScript
+console.log('AWS-SDK Prepapring to instakll');
+const AWS = require("aws-sdk");
+
+// Configure the SDK with your AWS credentials
+AWS.config.update({
+  region: "us-west-1",
+  accessKeyId: process.env.aws_access_key_id,
+  secretAccessKey: process.env.aws_secret_access_key,
+});
+
+// Test the connection to DynamoDB
+const documentClient = new AWS.DynamoDB.DocumentClient();
+const tableName = "GPT-Response-DB";
+console.log('connection prepared!');
+
 // Object to store chat history
 const chatHistory = {};
 
