@@ -34,19 +34,10 @@ AWS.config.update({
   secretAccessKey: process.env.aws_secret_access_key,
 });
 
-// Create a DynamoDB client object
-const docClient = new AWS.DynamoDB.DocumentClient();
-
 // Test the connection to DynamoDB
-docClient.listTables((err, data) => {
-  if (err) {
-    console.error("Failed to connect to DynamoDB:", err);
-    process.exit(1);
-    return 1;
-  } else {
-    console.log("Connected to DynamoDB successfully");
-  }
-});
+const documentClient = new AWS.DynamoDB.DocumentClient();
+const tableName = "GPT-Response-DB";
+console.log('connection prepared!');
 
 // Object to store chat history
 const chatHistory = {};
