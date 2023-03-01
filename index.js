@@ -24,6 +24,7 @@ const openai = new OpenAIApi(configuration);
 
 //changes here ---------------------------------------------------------------
 // Load the AWS SDK for JavaScript
+console.log('AWS-SDK Prepapring to instakll');
 const AWS = require("aws-sdk");
 
 // Configure the SDK with your AWS credentials

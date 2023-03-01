@@ -51,5 +51,4 @@ jobs:
         
     - name: Start Bot
       run: |
-        npm install -g aws-sdk
         node index.js 
