@@ -59,7 +59,7 @@ client.on("messageCreate", async function (message) {
 
     // Otherwise, generate a new response using OpenAI
     const gdpResponse = await openai.createCompletion({
-      model: "text-davinci-002",
+      model: "gpt-3.5-turbo",
       prompt: `I am Elon Musk. I am here to answer your code questions. What would you like to know? \n\
         ${prompt}\n\
         H10:`,
